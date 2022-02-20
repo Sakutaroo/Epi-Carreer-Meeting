@@ -30,9 +30,9 @@ function OfferCase(props) {
     <tr>
       <th className="border border-slate-600">{props.index}</th>
       <th className="border border-slate-600">{props.name}</th>
-      <th className="border border-slate-600 overflow-y-auto">
+      <th className="border border-slate-600">
         {props.students.map((element) =>
-          <span key={element}>{element + ' '}</span>
+          <span className="" key={element}>{element + '\t'}</span>
         )}
       </th>
     </tr>

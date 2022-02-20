@@ -11,7 +11,7 @@ const OfferDisplay = () => {
     //     <OfferCase key={element} name={element['company']} index={index + 1} students={element['students']}/>
     //   )}
     // </div>
-    <div className="mt-16 mb-4 w-1/2 mx-auto">
+    <div className="mt-16 mb-16 w-1/2 mx-auto">
       <table className="w-full">
         <colgroup>
           <col className="w-1/12"/>
@@ -25,7 +25,7 @@ const OfferDisplay = () => {
         </tr>
         {infos.map((element, index) =>
           <OfferCase key={element} name={element['company']} index={index + 1} students={element['students']}/>
-          )}
+        )}
       </table>
     </div>
   )
