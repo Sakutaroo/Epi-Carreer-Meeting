@@ -1,9 +1,9 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { XIcon } from '@heroicons/react/solid';
 import { ListInfo } from '../ListInfo/ListInfo';
 
 function AddButton() {
-  let [isOpen, setIsOpen] = useState(false)
+  let [isOpen, setIsOpen] = useState(false);
   const [students, setStudents] = useState("");
   const [studentsList, setStudentList] = useState([]);
   const [companyName, setCompanyName] = useState("");
@@ -52,8 +52,8 @@ function AddButton() {
       students: studentsList,
       studentsForCSV: reformatStudents(studentsList)
     };
-    console.log(newOffer);
     setInfos([...infos, newOffer]);
+    console.log(newOffer);
     resetData();
     setIsOpen(!isOpen)
   };
@@ -79,7 +79,7 @@ function AddButton() {
                 </div>
                 <div className=" overflow-y-auto border-solid border-2 border-inheirt rounded-md w-4/12 h-28">
                   <div className="flex flex-wrap">
-                    {studentsList.map((text, index) => 
+                    {studentsList.map((text, index) =>
                       <div key={text} className="flex px-2 border-solid border-2 border-inheirt rounded-md">
                         <span className="pr-2">{text}</span>
                         <XIcon className="w-4 h-4 self-center" onClick={() => removeFromList({index})}/>
