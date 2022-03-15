@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useState } from 'react';
-import { XIcon } from '@heroicons/react/solid'
+import { XIcon } from '@heroicons/react/solid';
 import { ListInfo } from '../ListInfo/ListInfo';
 
 function AddButton() {
