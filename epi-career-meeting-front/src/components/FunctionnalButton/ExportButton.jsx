@@ -1,19 +1,10 @@
-import React, { useContext } from 'react';
-import { CSVLink } from "react-csv";
-import { ListInfo } from '../ListInfo/ListInfo';
+import React from 'react';
 
 function ExportButton() {
-  const {infos} = useContext(ListInfo);
-
-  const headers = [
-    {label: "Company", key: "company"},
-    {label: "Students", key: "studentsForCSV"}
-  ];
-
   return (
-    <CSVLink headers={headers} data={(infos)} className="flex bg-emerald-500 rounded-md justify-center items-center bg-green-300 w-20" filename={"dev.csv"}>
+    <a href={process.env.PUBLIC_URL + '/org_passages_clear.xlsm'} download className="flex bg-emerald-500 rounded-md justify-center items-center bg-green-300 w-20" filename={"dev.csv"}>
       <span>Export</span>
-    </CSVLink>
+    </a>
   )
 }
 
