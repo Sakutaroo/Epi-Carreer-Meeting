@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { ListInfo } from '../ListInfo/ListInfo';
-import saveAs from 'file-saver';
+// import * as FileSaver from 'file-saver';
 // import Axios from 'axios';
 
 function ExportButton() {
@@ -17,10 +17,21 @@ function ExportButton() {
 
     if (clicked) {
       fetch('http://localhost:3001/document', requestOptions)
-          .then(response => {
-            console.log(response);
+          .then((response) => response.blob()
+          .then((blob) => {
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            // const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'output.xlsm'); //or any other extension
+            document.body.appendChild(link);
+            link.click();
+            }))
+            // console.log(response);
+            // const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            // const data = new Blob([response.blob], {type: fileType});
+            // FileSaver.saveAs(response.data, 'output.xlsm');
             // saveAs(response.blob, 'output.xlsm');
-          });
     }
     clicked = false;
   }
