@@ -1,8 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { XIcon } from '@heroicons/react/solid';
 import { ListInfo } from '../ListInfo/ListInfo';
-// import * as Excel from 'exceljs';
-import axios from 'axios';
 
 function AddButton() {
   let [isOpen, setIsOpen] = useState(false);
@@ -10,32 +8,6 @@ function AddButton() {
   const [studentsList, setStudentList] = useState([]);
   const [companyName, setCompanyName] = useState("");
   const {infos, setInfos} = useContext(ListInfo);
-
-  useEffect(() => {
-    console.log(infos.length)
-    if (infos.length > 0) {
-        // const fileName = process.env.PUBLIC_URL + '/org_clear.xlsm'
-        // const ExcelJS = require('exceljs');
-        const buffer = axios.get(process.env.PUBLIC_URL + '/org_passages_clear.xlsm', {responseType: 'blob'})
-        // const wb = new Excel.Workbook();
-
-        console.log(buffer);
-
-        axios.post(process.env.PUBLIC_URL + '/org_passages.xlsm', buffer);
-        // const ws = wb.addWorksheet('My Sheet');
-
-        // ws.getCell('A1').value = 'John Doe';
-        // ws.getCell('B1').value = 'gardener';
-
-        // const r3 = ws.getRow(3);
-        // r3.values = [1, 2, 3, 4, 5, 6];
-
-        // const buffer = wb.xlsx.writeBuffer(fileName)
-
-        // const blob = new Blob([buffer]);
-        // Excel.saveAs(blob, process.env.PUBLIC_URL + '/org_clear.xlsm');
-    }
-  }, [infos])
 
   const detectType = (event) => {
     if (event.key === 'Enter' && students !== "") {
@@ -75,15 +47,17 @@ function AddButton() {
   };
 
   const sendData = () => {
-    const newOffer = {
-      company: companyName.toUpperCase(),
-      students: studentsList,
-      studentsForCSV: reformatStudents(studentsList)
-    };
+    if (companyName && studentsList) {
+      const newOffer = {
+        company: companyName.toUpperCase(),
+        students: studentsList,
+        studentsForCSV: reformatStudents(studentsList)
+      };
 
-    setInfos([...infos, newOffer]);
-    resetData();
-    setIsOpen(!isOpen)
+      setInfos([...infos, newOffer]);
+      resetData();
+      setIsOpen(!isOpen)
+    }
   };
 
   return (
