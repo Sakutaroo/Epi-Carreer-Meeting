@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  front:
+    build:
+      context: ./epi-career-meeting-front
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+  server:
+    restart: on-failure
+    build:
+      context: ./epi-career-meeting-front
+      dockerfile: Dockerfile
